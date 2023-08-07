@@ -143,27 +143,10 @@ class GoogleTransfer(BaseTransfer[Config]):
         start_time = time.monotonic()
         delay = 2
         while True:
-            http = build_http()
-            if self.proxy_info:
-                if self.proxy_info.get("type") == "socks5":
-                    proxy_type = httplib2.socks.PROXY_TYPE_SOCKS5
-                else:
-                    proxy_type = httplib2.socks.PROXY_TYPE_HTTP
-
-                http.proxy_info = httplib2.ProxyInfo(
-                    proxy_type,
-                    self.proxy_info["host"],
-                    self.proxy_info["port"],
-                    proxy_user=self.proxy_info.get("user"),
-                    proxy_pass=self.proxy_info.get("pass"),
-                )
-
-            http = self.google_creds.authorize(http)
-
             try:
                 # sometimes fails: httplib2.ServerNotFoundError: Unable to find the server at www.googleapis.com
                 # https://googleapis.github.io/google-api-python-client/docs/dyn/storage_v1.html
-                return build("storage", "v1", http=http)
+                return build("storage", "v1", credentials=self.google_creds)
             except (httplib2.ServerNotFoundError, socket.timeout):
                 if time.monotonic() - start_time > 600:
                     raise
