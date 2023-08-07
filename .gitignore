@@ -19,3 +19,4 @@ __pycache__/
 *.orig
 coverage.xml
 rohmu-rpm-src.tar
+/out/

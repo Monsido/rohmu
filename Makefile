@@ -42,3 +42,9 @@ fmt:
 coverage:
 	$(PYTHON) -m pytest $(PYTEST_ARG) --cov-report term-missing --cov-report xml:coverage.xml \
 		--cov rohmu test/
+
+.PHONY: deb
+deb: $(generated)
+	cp debian/changelog.in debian/changelog
+	dch -v $(long_ver) --distribution unstable "Automatically built .deb"
+	dpkg-buildpackage -A -uc -us

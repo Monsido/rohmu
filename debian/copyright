@@ -1,0 +1,11 @@
+Format: http://dep.debian.net/deps/dep5
+Upstream-Name: rohmu
+Source: https://github.com/Aiven-Open/rohmu
+
+Files: *
+Copyright: Copyright (C) 2022 Aiven Ltd and contributors to the Rohmu project.
+License: Apache-2.0
+
+License: Apache-2.0
+  On Debian GNU/Linux system you can find the complete text of the
+  Apache 2.0 license in '/usr/share/common-licenses/Apache-2.0'.
