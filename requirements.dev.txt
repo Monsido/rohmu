@@ -1,5 +1,5 @@
 # same versions than pghoard this must reviewed and pinned
-black==22.3.0
+black==24.3.0
 mock
 mypy
 # Same version from pghoard
